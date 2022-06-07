@@ -1,7 +1,7 @@
 **Action Monitor**
 -
 
-Action Monitor Spring Boot application using ActiveMq and Spring WebSocket
+Action Monitor Spring Boot application using Spring WebSockets and H2 Database.
 
 Description
 -----------------------
@@ -25,14 +25,14 @@ java -jar target/actionmonitor-1.0.jar
 How it works
 ------------
 When the application starts, the database will be created.
-Then you have to open http://localhost:8080 and click on "Connect" button.
+Then you have to open http://localhost:8080 and enter your username then click on button.
 From here you can start sending messages, and you will be notified when a new one was received.
 In order to better test this you can open more than one tab, and you can chat from one tab to the other.
 
 Logs & DB
 ---------
 Every log files are located in the directory where you started from the application/tomcat/logs.
-In the same directory (where you started from the app) there you can find the database file also.
+In the same directory from where you started from the app.
 
 Testing
 -------
@@ -40,5 +40,20 @@ To run test simply go into the project directory and type:
 ```
 mvn test
 ```
-
 The testing approach that was used in this project is a combination of Mockist and Classic.
+
+Endpoints
+---------
+http://localhost:8080          -> Chat application
+http://localhost:8080/status   -> Check application status
+http://localhost:8080/version  -> Check application version
+http://localhost:8080/all      -> Retrieve all messages from DB
+
+For Testing purposes:
+http://localhost:8080/message  -> Send Post Messages
+{
+    "content": "test message",
+    "sender": "username",
+    "time": "date",
+	"type": "CHAT"
+}
