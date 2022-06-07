@@ -89,10 +89,15 @@ public class ChatMessageTests {
 				.andExpect(status().isBadRequest());
 	}
 
-	private static String getJson(Object obj) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		StringWriter writer = new StringWriter();
-		mapper.writeValue(writer, obj);
-		return writer.toString();
+	private static String getJson(Object obj) {
+		String json = "";
+		try (ObjectMapper mapper = new ObjectMapper();
+			StringWriter writer = new StringWriter()){
+				mapper.writeValue(writer, obj);
+				json = writer.toString();
+			}
+		catch(IOException io){}
+		
+		return json;
 	}
 }
