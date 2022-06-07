@@ -44,16 +44,16 @@ The testing approach that was used in this project is a combination of Mockist a
 
 Endpoints
 ---------
-http://localhost:8080          -> Chat application
-http://localhost:8080/status   -> Check application status
-http://localhost:8080/version  -> Check application version
-http://localhost:8080/all      -> Retrieve all messages from DB
+http://localhost:8080          -> Chat application\
+http://localhost:8080/status   -> Check application status\
+http://localhost:8080/version  -> Check application version\
+http://localhost:8080/all      -> Retrieve all messages from DB\
 
-For Testing purposes:
-http://localhost:8080/message  -> Send Post Messages
-{
-    "content": "test message",
-    "sender": "username",
-    "time": "date",
-	"type": "CHAT"
+For Testing purposes:\
+http://localhost:8080/message  -> Send Post Messages\
+{\
+    "content": "test message",\
+    "sender": "username",\
+    "time": "date",\
+    "type": "CHAT"\
 }
