@@ -3,6 +3,7 @@ package com.mpirv.actionmonitor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpirv.actionmonitor.model.ChatMessage;
 import com.mpirv.actionmonitor.model.MessageType;
+import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,16 +32,22 @@ public class ChatMessageTests {
 	private WebApplicationContext wac;
 	private MockMvc mockMvc;
 	private ChatMessage msg;
+	private ObjectMapper mapper
 
-	@Before
-	public void setup() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-		msg = ChatMessage.builder()
+	@BeforeClass
+    public static void setup() {
+        msg = ChatMessage.builder()
 				.type(MessageType.CHAT)
 				.sender("Test")
 				.content("Test Content")
 				.time("Test Time")
 				.build();
+		mapper = new ObjectMapper();
+    }
+
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
 
 	@Test
@@ -90,14 +97,6 @@ public class ChatMessageTests {
 	}
 
 	private static String getJson(Object obj) {
-		String json = "";
-		try (ObjectMapper mapper = new ObjectMapper();
-			StringWriter writer = new StringWriter()){
-				mapper.writeValue(writer, obj);
-				json = writer.toString();
-			}
-		catch(IOException io){}
-		
-		return json;
+		return objectMapper.writeValueAsString(obj);
 	}
 }
