@@ -25,7 +25,7 @@ java -jar target/actionmonitor-1.0.jar
 How it works
 ------------
 When the application starts, the database will be created.
-Then you have to open http://localhost:8080 and enter your username then click on button.
+Then you have to open http://localhost:8080 and enter your Username then click on Arrow button.
 From here you can start sending messages, and you will be notified when a new one was received.
 In order to better test this you can open more than one tab, and you can chat from one tab to the other.
 
