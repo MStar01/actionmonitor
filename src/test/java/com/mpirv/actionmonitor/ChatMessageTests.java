@@ -3,8 +3,8 @@ package com.mpirv.actionmonitor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpirv.actionmonitor.model.ChatMessage;
 import com.mpirv.actionmonitor.model.MessageType;
-import org.junit.BeforeClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
-import java.io.StringWriter;
 
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -31,11 +30,11 @@ public class ChatMessageTests {
 	@Autowired
 	private WebApplicationContext wac;
 	private MockMvc mockMvc;
-	private ChatMessage msg;
-	private ObjectMapper mapper
+	private static ChatMessage msg;
+	private static ObjectMapper mapper;
 
 	@BeforeClass
-	public static void setup() {
+	public static void beforeAllSetup(){
 		msg = ChatMessage.builder()
 				.type(MessageType.CHAT)
 				.sender("Test")
@@ -74,7 +73,7 @@ public class ChatMessageTests {
 	}
 
 	@Test
-	public void testAddMessageEmptyMessage() throws Exception {
+	public void testSendMessageEmptyMessage() throws Exception {
 		MvcResult result = mockMvc.perform(
 						post("/message")
 								.content(getJson(msg))
@@ -87,7 +86,7 @@ public class ChatMessageTests {
 	}
 
 	@Test
-	public void testAddMessageWrongJSON() throws Exception {
+	public void testSendMessageWrongJSON() throws Exception {
 		this.mockMvc.perform(
 						post("/message")
 								.content("{ message:\"new message\" ")
@@ -96,7 +95,7 @@ public class ChatMessageTests {
 				.andExpect(status().isBadRequest());
 	}
 
-	private static String getJson(Object obj) {
-		return objectMapper.writeValueAsString(obj);
+	private static String getJson(Object obj) throws IOException {
+		return mapper.writeValueAsString(obj);
 	}
 }
