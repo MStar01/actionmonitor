@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = ActionMonitorApplication.class)
-public class MessageIntegrationTests {
+public class ChatMessageTests {
 	@Autowired
 	private WebApplicationContext wac;
 	private MockMvc mockMvc;
