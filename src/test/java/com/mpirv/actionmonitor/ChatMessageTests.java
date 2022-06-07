@@ -35,15 +35,15 @@ public class ChatMessageTests {
 	private ObjectMapper mapper
 
 	@BeforeClass
-    public static void setup() {
-        msg = ChatMessage.builder()
+	public static void setup() {
+		msg = ChatMessage.builder()
 				.type(MessageType.CHAT)
 				.sender("Test")
 				.content("Test Content")
 				.time("Test Time")
 				.build();
 		mapper = new ObjectMapper();
-    }
+	}
 
 	@Before
 	public void setup() {
